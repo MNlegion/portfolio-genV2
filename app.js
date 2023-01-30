@@ -1,11 +1,11 @@
-const inquirer = require("inquirer");
+const inquirer = require('inquirer');
 
 const promptUser = () => {
   return inquirer.prompt([
     {
-      type: "input",
-      name: "name",
-      message: "What is your name? (Required)",
+      type: 'input',
+      name: 'name',
+      message: 'What is your name? (Required)',
       validate: nameInput => {
         if (nameInput) {
           return true;
@@ -16,9 +16,9 @@ const promptUser = () => {
       }
     },
     {
-      type: "input",
-      name: "github",
-      message: "What is your Github username? (Required)",
+      type: 'input',
+      name: 'github',
+      message: 'What is your Github username? (Required)',
       validate: githubInput => {
         if (githubInput) {
           return true; 
@@ -29,9 +29,22 @@ const promptUser = () => {
       }
     },
     {
-      type: "input",
-      name: "about",
-      message: "Provide some information about yourself:",
+      type: 'confirm',
+      name: 'confirmAbout',
+      message: 'Would you like to enter some information about yourself for an "About" section?',
+      default: true
+    },
+    {
+      type: 'input',
+      name: 'about',
+      message: 'Provide some information about yourself:',
+      when: ({ confirmAbout }) => {
+        if (confirmAbout) {
+          return true;
+        } else {
+          return false;
+        }
+      }
     },
   ]);
 };
@@ -50,9 +63,9 @@ Add a New Project
   return inquirer
     .prompt([
       {
-        type: "input",
-        name: "name",
-        message: "What is the name of your project? (Required)",
+        type: 'input',
+        name: 'name',
+        message: 'What is the name of your project? (Required)',
         validate: projectNameInput => {
           if (projectNameInput) {
             return true;
@@ -63,9 +76,9 @@ Add a New Project
         }
       },
       {
-        type: "input",
-        name: "description",
-        message: "Provide a description of the project (Required)",
+        type: 'input',
+        name: 'description',
+        message: 'Provide a description of the project (Required)',
         validate: descriptionInput => {
           if (descriptionInput) {
             return true;
@@ -76,9 +89,9 @@ Add a New Project
         }
       },
       {
-        type: "checkbox",
-        name: "languages",
-        message: "What did you build this project with? (Check all that apply)",
+        type: 'checkbox',
+        name: 'languages',
+        message: 'What did you build this project with? (Check all that apply)',
         choices: [
           "JavaScript",
           "HTML",
@@ -90,9 +103,9 @@ Add a New Project
         ],
       },
       {
-        type: "input",
-        name: "link",
-        message: "Enter the GitHub link to your project. (Required)",
+        type: 'input',
+        name: 'link',
+        message: 'Enter the GitHub link to your project. (Required)',
         validate: githubLinkInput => {
           if (githubLinkInput) {
             return true;
@@ -103,15 +116,15 @@ Add a New Project
         }
       },
       {
-        type: "confirm",
-        name: "feature",
-        message: "Would you like to feature this project?",
+        type: 'confirm',
+        name: 'feature',
+        message: 'Would you like to feature this project?',
         default: false,
       },
       {
-        type: "confirm",
-        name: "confirmAddProject",
-        message: "Would you like to enter another project?",
+        type: 'confirm',
+        name: 'confirmAddProject',
+        message: 'Would you like to enter another project?',
         default: false,
       },
     ])
