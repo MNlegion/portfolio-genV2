@@ -5,7 +5,7 @@ const promptUser = () => {
     {
       type: "input",
       name: "name",
-      message: "What is your name?",
+      message: "What is your name? (Required)",
       validate: nameInput => {
         if (nameInput) {
           return true;
@@ -18,7 +18,15 @@ const promptUser = () => {
     {
       type: "input",
       name: "github",
-      message: "What is your Github username?",
+      message: "What is your Github username? (Required)",
+      validate: githubInput => {
+        if (githubInput) {
+          return true; 
+        } else {
+          console.log('Please enter your Github username.');
+          return false;
+        }
+      }
     },
     {
       type: "input",
@@ -85,6 +93,14 @@ Add a New Project
         type: "input",
         name: "link",
         message: "Enter the GitHub link to your project. (Required)",
+        validate: githubLinkInput => {
+          if (githubLinkInput) {
+            return true;
+          } else {
+            console.log('Please enter a valid url to your Github Repository.');
+            return false;
+          }
+        }
       },
       {
         type: "confirm",
